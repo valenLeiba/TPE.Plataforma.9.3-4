@@ -2,6 +2,7 @@ abstract class Pasajero {
     private String apellido;
     private String nombre;
     private String dni;
+    private TarjetaCredito tarjeta;
 
     // Constructor
     public Pasajero(String apellido, String nombre, String dni) {
@@ -29,6 +30,10 @@ abstract class Pasajero {
     // Método para devolver un pasaje
     public void devolverPasaje(int horasAntesSalida) {
         // Lógica para devolver un pasaje
+    }
+
+    public TarjetaCredito getTarjeta() {
+        return tarjeta;
     }
 }
 
