@@ -18,7 +18,7 @@ class PasajeroRegistrado extends Pasajero {
 
     @Override
     public void comprarPasaje(Asiento asiento) {
-       asiento.setOcupante(this);
+        asiento.setOcupante(this);
     }
 
 }

@@ -14,9 +14,12 @@ class EmpresaTransporte {
     public String getNombre() {
         return nombre;
     }
-
+    public void setAsientos(Asiento a){
+        asientos.add(a);
+    }
     public List<Asiento> getAsientos() {
-        return asientos;
+        ArrayList<Asiento> Aux = new ArrayList<Asiento>(asientos);
+        return Aux;
     }
 
 
@@ -24,7 +27,7 @@ class EmpresaTransporte {
     public int cantidadAsientosLibres(){
         int cantidad = 0;
         for (Asiento a : asientos) {
-            if(a.getOcupante()!= null){
+            if(a.getOcupante() == null){
                 cantidad++;
             }
         }
