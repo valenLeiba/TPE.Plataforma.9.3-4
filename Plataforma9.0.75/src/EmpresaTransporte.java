@@ -6,13 +6,11 @@ class EmpresaTransporte {
     private String nombre;
     private List<Asiento> asientos;
 
-    // Constructor
     public EmpresaTransporte(String nombre) {
         this.nombre = nombre;
         this.asientos = new ArrayList<>();
     }
 
-    // Métodos getters y setters
     public String getNombre() {
         return nombre;
     }
@@ -21,6 +19,16 @@ class EmpresaTransporte {
         return asientos;
     }
 
-    // Otros métodos relacionados con la empresa de transporte
+
+
+    public int cantidadAsientosLibres(){
+        int cantidad = 0;
+        for (Asiento a : asientos) {
+            if(a.getOcupante()!= null){
+                cantidad++;
+            }
+        }
+        return cantidad;
+    }
 }
 
