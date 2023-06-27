@@ -1,6 +1,7 @@
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.io.IOException;
+import java.util.List;
 
 public class Main {
     public static void main(String[] args) {
@@ -24,54 +25,66 @@ public class Main {
 
         	EmpresaTransporte abc = new EmpresaTransporte();
         	
-        	abc.AddColectivo(bus);
-            Colectivo bus1 = new Colectivo();
-        	bus1.setPatente("123");
-        	abc.AddColectivo(bus1);
-        	Colectivo bus2 = new Colectivo();
-        	bus2.setPatente("1234566");
-        	abc.AddColectivo(bus2);
+        	//abc.AddColectivo(bus);
+            //Colectivo bus1 = new Colectivo();
+        	//bus1.setPatente("123");
+        	//abc.AddColectivo(bus1);
+        	//Colectivo bus2 = new Colectivo();
+        	//bus2.setPatente("1234566");
+        	//abc.AddColectivo(bus2);
         	
-        	abc.SetColectivos("buses.json");
+        	//abc.SetColectivos("buses.json");
         	
         	
         	
-        	EmpresaTransporte empresa = new EmpresaTransporte(); 
         	
-        	empresa.GetColectivos("buses.json");
         	
-        	/*
-            Colectivo loadedBus = bus.loadFromJson("bus.json");
-
-            System.out.println("Asientos cargados desde el archivo JSON:");
-            System.out.println("los asientos disponibles son");
-            for (Asiento seat : loadedBus.getSeats()) {
+        	List<Colectivo> colectivos; 
+        	EmpresaTransporte e = new EmpresaTransporte();
+        	colectivos= e.GetColectivos("buses.json");
+        	
+        	
+        	for(Colectivo c: colectivos) {
             	
-            	 Pasajero aux = seat.getOcupante();
-            	if(aux.getNombre() == ""){
-            		System.out.println("Asiento " + seat.getNumero());
-            	}
-            }
-            
-            //el usuario ingresa el asiento que desea
-           int asientonum = 4;
+        		for (Asiento seat : c.getSeats()) {
+        			
+        			Pasajero aux = seat.getOcupante();
+        			if(aux != null) {
+        				if(aux.getNombre() == ""){
+        					System.out.println("Asiento " + seat.getNumero());
+        				}
+        			}
+        		}
+        	}
+        	       	
+        	for(Colectivo c: colectivos) {
+        	
+        		
+        		
+        		//el usuario ingresa el asiento que desea
+        		int asientonum = 6;
           
-           for (Asiento seat : loadedBus.getSeats()) {
+        		for (Asiento seat : c.getSeats()) {
            	
-          	if(seat.getNumero() == asientonum){  		 
-          		if(seat.getOcupante().getNombre() == ""){
-          			System.out.println("siiiiiiii "); 
+        			if(seat.getNumero() == asientonum){  
+        				if(seat.getOcupante()!= null) {
+        					if(seat.getOcupante().getNombre() == ""){
+        						System.out.println("siiiiiiii "); 
                 
-          			seat.getOcupante().SetNombre("valentin");
-          			seat.getOcupante().SetApellido("rubare");
-                	loadedBus.saveToJson("bus.json");
-                	break;
-          		}else {
-          			System.out.println("ese asiento no esta disponible :( ");
-          		}
-          	}
+        						seat.getOcupante().SetNombre("valentin");
+        						seat.getOcupante().SetApellido("leiba");
+        	
+        						e.SetColectivos("buses.json");
+        				
+        					}else {
+        						System.out.println("ese asiento no esta disponible :( ");
+        					}
+        				}else {
+        					System.out.println("no quedan mas asientos disponibles ");
+        				}
+        			}		
            }
-         */ 
+        	}
         } catch (IOException e) {
             e.printStackTrace();
         }

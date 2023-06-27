@@ -2,8 +2,8 @@
     {
         "asientos": [
             {
-                "apellido": "",
-                "nombre": "",
+                "apellido": "carruccio",
+                "nombre": "paula",
                 "seatNumber": 1
             },
             {
@@ -12,8 +12,8 @@
                 "seatNumber": 2
             },
             {
-                "apellido": "",
-                "nombre": "",
+                "apellido": "cimolai",
+                "nombre": "tomas",
                 "seatNumber": 3
             },
             {
@@ -22,13 +22,13 @@
                 "seatNumber": 4
             },
             {
-                "apellido": "",
-                "nombre": "",
+                "apellido": "rubare",
+                "nombre": "valentin",
                 "seatNumber": 5
             },
             {
-                "apellido": "",
-                "nombre": "",
+                "apellido": "leiba",
+                "nombre": "valentin",
                 "seatNumber": 6
             },
             {

@@ -5,7 +5,8 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
-
+import java.io.BufferedReader;
+import java.io.FileReader;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
@@ -20,28 +21,59 @@ class EmpresaTransporte {
 	   colectivos = new ArrayList<>();
    }
 		   
-    public static List<Colectivo> getColectivos(String fileName) throws IOException {
-    	        List<Colectivo> buses = new ArrayList<>();
-    	        	
-    	        String jsonString = new String(Files.readAllBytes(Paths.get(fileName)));
-    	        JSONArray jsonArray = new JSONArray(jsonString);
+    public List<Colectivo> GetColectivos(String fileName) throws IOException {
+    	String jsonString = new String(Files.readAllBytes(Paths.get(fileName)));
+    	  JSONArray jsonArray = new JSONArray(jsonString);
+    	  
+          for (int i = 0; i < jsonArray.length(); i++) {
+              JSONObject jsonObject = jsonArray.getJSONObject(i);
+              Colectivo c = new Colectivo();
 
-    	        for (int i = 0; i < jsonArray.length(); i++) {
-    	            JSONObject jsonObject = jsonArray.getJSONObject(i);
-    	            int seatNumber = jsonObject.getInt("seatNumber");
+              String patente = jsonObject.getString("patente");
+              
+              c.setPatente(patente);
+             // System.out.println("Patente: " + patente);
 
-    	          
-    	            // Obtén más atributos si es necesario
-    	            Asiento seat = new Asiento(seatNumber);
-    	            PasajeroRegistrado pasajero = new PasajeroRegistrado(jsonObject.getString("apellido"), jsonObject.getString("nombre"),"" ,"" );
-    	            seat.setOcupante(pasajero);
-    	            bus.addSeat(seat);
-    	        }
+              JSONArray asientosArray = jsonObject.getJSONArray("asientos");
+            //  System.out.println("Asientos:");
+              for (int j = 0; j < asientosArray.length(); j++) {
+                  JSONObject asientoObject = asientosArray.getJSONObject(j);
+                  
 
-    	        return bus;
-    	    }
-     }    
-    
+                  String apellido = asientoObject.getString("apellido");
+                  String nombre = asientoObject.getString("nombre");
+                  int seatNumber = asientoObject.getInt("seatNumber");
+
+                  Asiento A = new Asiento(seatNumber);
+                  PasajeroRegistrado P = new PasajeroRegistrado(apellido, nombre, "","");
+                  
+                  A.setOcupante(P);
+                  c.addSeat(A);
+                //  System.out.println("  Apellido: " + apellido);
+                 // System.out.println("  Nombre: " + nombre);
+                 // System.out.println("  N�mero de asiento: " + seatNumber);
+                 // System.out.println();
+              }
+              colectivos.add(c);
+          }
+          
+          return colectivos;
+      }
+  
+    	
+
+    private String readFileAsString(String fileName) throws IOException {
+        StringBuilder content = new StringBuilder();
+        
+        try (BufferedReader reader = new BufferedReader(new FileReader(fileName))) {
+            String line;
+            while ((line = reader.readLine()) != null) {
+                content.append(line);
+            }
+        }
+        
+        return content.toString();
+    }
 
     public void SetColectivos(String fileName) throws IOException {
     	

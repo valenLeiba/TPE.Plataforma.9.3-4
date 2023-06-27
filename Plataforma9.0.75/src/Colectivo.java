@@ -12,6 +12,12 @@ import java.util.List;
 public class Colectivo {
     private List<Asiento> seats;
     private String patente;
+    
+    
+    private double precio;
+    private String empresa;
+    private double horarioinicio;
+    private double horariollegada;
 
     public Colectivo() {
         seats = new ArrayList<>();
@@ -114,5 +120,37 @@ public class Colectivo {
 
 	public void setPatente(String patente) {
 		this.patente = patente;
+	}
+
+	public double getHorariollegada() {
+		return horariollegada;
+	}
+
+	public void setHorariollegada(double horariollegada) {
+		this.horariollegada = horariollegada;
+	}
+
+	public double getHorarioinicio() {
+		return horarioinicio;
+	}
+
+	public void setHorarioinicio(double horarioinicio) {
+		this.horarioinicio = horarioinicio;
+	}
+
+	public String getEmpresa() {
+		return empresa;
+	}
+
+	public void setEmpresa(String empresa) {
+		this.empresa = empresa;
+	}
+
+	public double getPrecio() {
+		return precio;
+	}
+
+	public void setPrecio(double precio) {
+		this.precio = precio;
 	}
 }
