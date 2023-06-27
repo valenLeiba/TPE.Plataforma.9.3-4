@@ -16,6 +16,13 @@ abstract class Pasajero {
     public String getNombre() {
         return nombre;
     }
+    
+    public void SetNombre(String Nombre) {
+        nombre = Nombre;
+    }
+    public void SetApellido(String Apellido) {
+        apellido = Apellido;
+    }
 
     public String getDni() {
         return dni;

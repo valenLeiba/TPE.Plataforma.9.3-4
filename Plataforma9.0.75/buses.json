@@ -1,0 +1,55 @@
+[
+    {
+        "asientos": [
+            {
+                "apellido": "",
+                "nombre": "",
+                "seatNumber": 1
+            },
+            {
+                "apellido": "belmonte",
+                "nombre": "mauro",
+                "seatNumber": 2
+            },
+            {
+                "apellido": "",
+                "nombre": "",
+                "seatNumber": 3
+            },
+            {
+                "apellido": "",
+                "nombre": "",
+                "seatNumber": 4
+            },
+            {
+                "apellido": "",
+                "nombre": "",
+                "seatNumber": 5
+            },
+            {
+                "apellido": "",
+                "nombre": "",
+                "seatNumber": 6
+            },
+            {
+                "apellido": "",
+                "nombre": "",
+                "seatNumber": 7
+            },
+            {
+                "apellido": "",
+                "nombre": "",
+                "seatNumber": 8
+            }
+        ],
+        "patente": "134abc"
+    },
+    {
+        "asientos": [],
+        "patente": "123"
+    },
+    {
+        "asientos": [],
+        "patente": "1234566"
+    }
+]

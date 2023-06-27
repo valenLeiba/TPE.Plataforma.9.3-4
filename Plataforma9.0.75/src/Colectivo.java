@@ -11,6 +11,7 @@ import java.util.List;
 
 public class Colectivo {
     private List<Asiento> seats;
+    private String patente;
 
     public Colectivo() {
         seats = new ArrayList<>();
@@ -27,7 +28,17 @@ public class Colectivo {
         for (Asiento seat : seats) {
             JSONObject jsonObject = new JSONObject();
             jsonObject.put("seatNumber", seat.getNumero());
-            jsonObject.put("isOccupied", seat.getOcupante());
+            if(seat.getOcupante() != null) {
+            	Pasajero pasajero = seat.getOcupante();
+            
+            	jsonObject.put("nombre", pasajero.getNombre());
+            	jsonObject.put("apellido", pasajero.getApellido());
+            	
+            }else {
+            	
+            	jsonObject.put("nombre", "");
+            	jsonObject.put("apellido", "");
+            }
             // Agrega más atributos si es necesario
             jsonArray.put(jsonObject);
         }
@@ -47,17 +58,61 @@ public class Colectivo {
             JSONObject jsonObject = jsonArray.getJSONObject(i);
             int seatNumber = jsonObject.getInt("seatNumber");
 
-            // Verificar si la clave "isOccupied" existe en el objeto
-            boolean isOccupied = jsonObject.has("isOccupied") ? jsonObject.getBoolean("isOccupied") : false;
-
+          
             // Obtén más atributos si es necesario
             Asiento seat = new Asiento(seatNumber);
+            PasajeroRegistrado pasajero = new PasajeroRegistrado(jsonObject.getString("apellido"), jsonObject.getString("nombre"),"" ,"" );
+            seat.setOcupante(pasajero);
             bus.addSeat(seat);
         }
 
         return bus;
     }
+    
+    
+   
+    
+    
+    public JSONArray abc123(String fileName) {
+        JSONArray jsonArray = new JSONArray();
+        for (Asiento seat : seats) {
+            JSONObject jsonObject = new JSONObject();
+            jsonObject.put("seatNumber", seat.getNumero());
+            if(seat.getOcupante() != null) {
+            	Pasajero pasajero = seat.getOcupante();
+            
+            	jsonObject.put("nombre", pasajero.getNombre());
+            	jsonObject.put("apellido", pasajero.getApellido());
+            	
+            }else {
+            	
+            	jsonObject.put("nombre", "");
+            	jsonObject.put("apellido", "");
+            }
+            // Agrega más atributos si es necesario
+            jsonArray.put(jsonObject);
+        }
+        
+        return jsonArray;
+    }
+    
+    
+    
+    
+    
     public List<Asiento> getSeats() {
         return seats;
     }
+    
+    public void RemoveSeats(int pos) {
+        seats.remove(pos);
+    }
+
+	public String getPatente() {
+		return patente;
+	}
+
+	public void setPatente(String patente) {
+		this.patente = patente;
+	}
 }

@@ -2,51 +2,76 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.io.IOException;
 
-// Press Shift twice to open the Search Everywhere dialog and type `show whitespaces`,
-// then press Enter. You can now see whitespace characters in your code.
-/*public class Main {
-    public static void main(String[] args) {
-        //Crea asientos
-        Asiento a1 = new Asiento(1);
-        Asiento a2 = new Asiento(2);
-        Asiento a3 = new Asiento(3);
-        Asiento a4 = new Asiento(4);
-
-        //crea empresa transporte
-        EmpresaTransporte viaTac = new EmpresaTransporte("viaTac");
-        viaTac.setAsientos(a1);
-        viaTac.setAsientos(a2);
-        viaTac.setAsientos(a3);
-        viaTac.setAsientos(a4);
-
-        //crea pasajero registrado
-        PasajeroRegistrado p1 = new PasajeroRegistrado("Gonzalez", "juan", "123", "4330");
-
-        p1.comprarPasaje(a1);
-        p1.devolverPasaje(a1);
-        System.out.println(viaTac.cantidadAsientosLibres());
-
-    }*/
 public class Main {
     public static void main(String[] args) {
         Colectivo bus = new Colectivo();
-        //bus.addSeat(new Asiento(1));
-        //bus.addSeat(new Asiento(2));
-        //bus.addSeat(new Asiento(3));
-        // Agrega más asientos si es necesario
+        Asiento prueba = new Asiento(2);
+        PasajeroRegistrado mauro = new PasajeroRegistrado("belmonte", "mauro", "12345", "1234");
+        prueba.setOcupante(mauro);
+        
+        bus.addSeat(new Asiento(1));
+        bus.addSeat(prueba);
+        bus.addSeat(new Asiento(3));
+        bus.addSeat(new Asiento(4));
+        bus.addSeat(new Asiento(5));
+       bus.addSeat(new Asiento(6));
+       bus.addSeat(new Asiento(7));
+        bus.addSeat(new Asiento(8));
+        bus.setPatente("134abc");
 
         try {
-            // Guardar en un archivo JSON
-           bus.saveToJson("bus.json");
+        //  bus.saveToJson("bus.json");
 
-            // Cargar desde un archivo JSON
+        	EmpresaTransporte abc = new EmpresaTransporte();
+        	
+        	abc.AddColectivo(bus);
+            Colectivo bus1 = new Colectivo();
+        	bus1.setPatente("123");
+        	abc.AddColectivo(bus1);
+        	Colectivo bus2 = new Colectivo();
+        	bus2.setPatente("1234566");
+        	abc.AddColectivo(bus2);
+        	
+        	abc.SetColectivos("buses.json");
+        	
+        	
+        	
+        	EmpresaTransporte empresa = new EmpresaTransporte(); 
+        	
+        	empresa.GetColectivos("buses.json");
+        	
+        	/*
             Colectivo loadedBus = bus.loadFromJson("bus.json");
 
-            // Utilizar los datos cargados
             System.out.println("Asientos cargados desde el archivo JSON:");
+            System.out.println("los asientos disponibles son");
             for (Asiento seat : loadedBus.getSeats()) {
-                System.out.println("Asiento " + seat.getNumero() + ": Ocupado = " + seat.getOcupante());
+            	
+            	 Pasajero aux = seat.getOcupante();
+            	if(aux.getNombre() == ""){
+            		System.out.println("Asiento " + seat.getNumero());
+            	}
             }
+            
+            //el usuario ingresa el asiento que desea
+           int asientonum = 4;
+          
+           for (Asiento seat : loadedBus.getSeats()) {
+           	
+          	if(seat.getNumero() == asientonum){  		 
+          		if(seat.getOcupante().getNombre() == ""){
+          			System.out.println("siiiiiiii "); 
+                
+          			seat.getOcupante().SetNombre("valentin");
+          			seat.getOcupante().SetApellido("rubare");
+                	loadedBus.saveToJson("bus.json");
+                	break;
+          		}else {
+          			System.out.println("ese asiento no esta disponible :( ");
+          		}
+          	}
+           }
+         */ 
         } catch (IOException e) {
             e.printStackTrace();
         }
