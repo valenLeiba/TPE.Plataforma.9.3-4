@@ -1,9 +1,11 @@
 [
     {
+        "horarioInicio": 2,
+        "precio": 200,
         "asientos": [
             {
-                "apellido": "carruccio",
-                "nombre": "paula",
+                "apellido": "leiba",
+                "nombre": "valentin",
                 "seatNumber": 1
             },
             {
@@ -12,8 +14,8 @@
                 "seatNumber": 2
             },
             {
-                "apellido": "cimolai",
-                "nombre": "tomas",
+                "apellido": "leiba",
+                "nombre": "valentin",
                 "seatNumber": 3
             },
             {
@@ -22,8 +24,8 @@
                 "seatNumber": 4
             },
             {
-                "apellido": "rubare",
-                "nombre": "valentin",
+                "apellido": "",
+                "nombre": "",
                 "seatNumber": 5
             },
             {
@@ -32,24 +34,34 @@
                 "seatNumber": 6
             },
             {
-                "apellido": "",
-                "nombre": "",
+                "apellido": "leiba",
+                "nombre": "valentin",
                 "seatNumber": 7
             },
             {
-                "apellido": "",
-                "nombre": "",
+                "apellido": "leiba",
+                "nombre": "valentin",
                 "seatNumber": 8
             }
         ],
+        "horariollegada": 7,
+        "empresa": "viacargo",
         "patente": "134abc"
     },
     {
+        "horarioInicio": 18,
+        "precio": 190,
         "asientos": [],
+        "horariollegada": 23,
+        "empresa": "flechabus",
         "patente": "123"
     },
     {
+        "horarioInicio": 2,
+        "precio": 150,
         "asientos": [],
+        "horariollegada": 7,
+        "empresa": "Viatac",
         "patente": "1234566"
     }
 ]

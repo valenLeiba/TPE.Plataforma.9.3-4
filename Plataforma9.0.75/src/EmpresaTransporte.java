@@ -27,8 +27,8 @@ class EmpresaTransporte {
     	  
           for (int i = 0; i < jsonArray.length(); i++) {
               JSONObject jsonObject = jsonArray.getJSONObject(i);
-              Colectivo c = new Colectivo();
-
+              
+              Colectivo c = new Colectivo(jsonObject.getDouble("precio"),jsonObject.getDouble("horarioInicio"),jsonObject.getDouble("horariollegada"),jsonObject.getString("empresa"));
               String patente = jsonObject.getString("patente");
               
               c.setPatente(patente);
@@ -83,7 +83,11 @@ class EmpresaTransporte {
     	for(Colectivo b: colectivos) {
     		JSONObject colectivo = new JSONObject();
     		colectivo.put("patente", b.getPatente());
-    		colectivo.put("asientos", b.abc123("bus.json"));
+    		colectivo.put("asientos", b.saveToJsonSinIO("buses.json"));
+    		colectivo.put("horarioInicio", b.getHorarioinicio());
+    		colectivo.put("horariollegada", b.getHorariollegada());
+        	colectivo.put("precio", b.getPrecio());
+        	colectivo.put("empresa", b.getEmpresa());
 
     		jsonArray.put(colectivo);
     	}
@@ -97,10 +101,65 @@ class EmpresaTransporte {
     
     public void AddColectivo(Colectivo a) {
     	
-    	colectivos.add(a);
-    	
-    
+    	colectivos.add(a);	
     }
+    
+    public void listarCompatibles(Filtro f) throws IOException {
+    	
+    	List<Colectivo> colectivos = this.GetColectivos("buses.json");
+    
+    	for(Colectivo c: colectivos) {
+        	if(f.cumple(c)) {
+        		
+        		for (Asiento seat : c.getSeats()) {
+    			
+    				Pasajero aux = seat.getOcupante();
+    				if(aux != null) {
+    					if(aux.getNombre() == ""){
+    						System.out.println("Asiento " + seat.getNumero());
+    					}
+    				}
+    			}
+        	}
+    	}
+    }
+    
+    public void ComprarPasaje(Filtro f, int asientonum) throws IOException {
+    	
+    	for(Colectivo c: colectivos) {
+    	
+		
+    		if(f.cumple(c)) {
+    			//el usuario ingresa el asiento que desea
+  
+    			for (Asiento seat : c.getSeats()) {
+   	
+    				if(seat.getNumero() == asientonum){  
+    					if(seat.getOcupante()!= null) {
+    						if(seat.getOcupante().getNombre() == ""){
+    							System.out.println("siiiiiiii "); 
+        
+    							seat.getOcupante().SetNombre("valentin");
+    							seat.getOcupante().SetApellido("leiba");
+	
+    							this.SetColectivos("buses.json");
+				
+    						}else {
+    							System.out.println("ese asiento no esta disponible :( ");
+    						}
+    					}else {
+    						System.out.println("no quedan mas asientos disponibles ");
+    					}
+    				}
+    			}
+    		}
+    	}
+    }
+    
+    
+    
+    
+    
 }
  
 

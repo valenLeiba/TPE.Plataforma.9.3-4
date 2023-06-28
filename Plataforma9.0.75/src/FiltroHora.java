@@ -1,11 +1,13 @@
-public class FiltroHora {
-    private double horario;
+public class FiltroHora implements Filtro{
+    private double horarioinicio;
+    private double horariofin;
 
-    public FiltroHora(Double horario){
-        this.horario=horario;
+    public FiltroHora(Double horarioinicio, Double horariofin){
+        this.horarioinicio=horarioinicio;
+        this.horariofin = horariofin;
     }
-
+    @Override
     public boolean cumple(Colectivo c){
-        return c.getHorario() == horario; //agregar la variable horario
+        return c.getHorarioinicio() >= horarioinicio && c.getHorariollegada() <= horariofin; //agregar la variable horario
     }
 }

@@ -1,4 +1,4 @@
-public class FiltroAnd {
+public class FiltroAnd implements Filtro{
     private Filtro f1;
     private Filtro f2;
 

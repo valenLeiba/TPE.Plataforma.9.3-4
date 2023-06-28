@@ -2,7 +2,6 @@ abstract class Pasajero {
     private String apellido;
     private String nombre;
     private String dni;
-    private TarjetaCredito tarjeta;
 
     public Pasajero(String apellido, String nombre, String dni) {
         this.apellido = apellido;
@@ -28,15 +27,10 @@ abstract class Pasajero {
         return dni;
     }
 
-
     public abstract void comprarPasaje(Asiento asiento);
 
     public void devolverPasaje(Asiento asiento) {
         asiento.setOcupante(null);
-    }
-
-    public TarjetaCredito getTarjeta() {
-        return tarjeta;
     }
 }
 

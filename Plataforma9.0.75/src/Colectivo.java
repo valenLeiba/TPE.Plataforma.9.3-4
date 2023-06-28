@@ -19,8 +19,12 @@ public class Colectivo {
     private double horarioinicio;
     private double horariollegada;
 
-    public Colectivo() {
+    public Colectivo(double precio, double horarioinicio, double horariollegada, String empresa) {
         seats = new ArrayList<>();
+        this.precio = precio;
+        this.empresa = empresa;
+        this.horarioinicio = horarioinicio;
+        this.horariollegada = horariollegada;
     }
 
     public void addSeat(Asiento seat) {
@@ -53,33 +57,8 @@ public class Colectivo {
             fileWriter.write(jsonArray.toString(4));
         }
     }
-
-    public static Colectivo loadFromJson(String fileName) throws IOException {
-        Colectivo bus = new Colectivo();
-
-        String jsonString = new String(Files.readAllBytes(Paths.get(fileName)));
-        JSONArray jsonArray = new JSONArray(jsonString);
-
-        for (int i = 0; i < jsonArray.length(); i++) {
-            JSONObject jsonObject = jsonArray.getJSONObject(i);
-            int seatNumber = jsonObject.getInt("seatNumber");
-
-          
-            // Obtén más atributos si es necesario
-            Asiento seat = new Asiento(seatNumber);
-            PasajeroRegistrado pasajero = new PasajeroRegistrado(jsonObject.getString("apellido"), jsonObject.getString("nombre"),"" ,"" );
-            seat.setOcupante(pasajero);
-            bus.addSeat(seat);
-        }
-
-        return bus;
-    }
     
-    
-   
-    
-    
-    public JSONArray abc123(String fileName) {
+    public JSONArray saveToJsonSinIO(String fileName) {
         JSONArray jsonArray = new JSONArray();
         for (Asiento seat : seats) {
             JSONObject jsonObject = new JSONObject();
@@ -101,6 +80,34 @@ public class Colectivo {
         
         return jsonArray;
     }
+
+    public Colectivo loadFromJson(String fileName) throws IOException {
+        
+
+        String jsonString = new String(Files.readAllBytes(Paths.get(fileName)));
+        JSONArray jsonArray = new JSONArray(jsonString);
+        
+        Colectivo bus = new Colectivo(precio, horarioinicio,horariollegada, empresa);
+        for (int i = 0; i < jsonArray.length(); i++) {
+            JSONObject jsonObject = jsonArray.getJSONObject(i);
+            int seatNumber = jsonObject.getInt("seatNumber");
+
+          
+            // Obtén más atributos si es necesario
+            Asiento seat = new Asiento(seatNumber);
+            PasajeroRegistrado pasajero = new PasajeroRegistrado(jsonObject.getString("apellido"), jsonObject.getString("nombre"),"" ,"" );
+            seat.setOcupante(pasajero);
+            bus.addSeat(seat);
+        }
+
+        return bus;
+    }
+    
+    
+   
+    
+    
+    
     
     
     
