@@ -1,3 +1,6 @@
+package Filtros;
+import Clases.Colectivo;
+
 public class FiltroCosto implements Filtro{
     private double precio;
 

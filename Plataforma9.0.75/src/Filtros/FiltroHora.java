@@ -1,3 +1,6 @@
+package Filtros;
+import Clases.Colectivo;
+
 public class FiltroHora implements Filtro{
     private double horarioinicio;
     private double horariofin;

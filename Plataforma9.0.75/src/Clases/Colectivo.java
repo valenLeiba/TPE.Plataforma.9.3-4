@@ -1,3 +1,4 @@
+package Clases;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -95,7 +96,7 @@ public class Colectivo {
           
             // Obtén más atributos si es necesario
             Asiento seat = new Asiento(seatNumber);
-            PasajeroRegistrado pasajero = new PasajeroRegistrado(jsonObject.getString("apellido"), jsonObject.getString("nombre"),"" ,"" );
+            PasajeroRegistrado pasajero = new PasajeroRegistrado(jsonObject.getString("apellido"), jsonObject.getString("nombre"),"" ,"", 0);
             seat.setOcupante(pasajero);
             bus.addSeat(seat);
         }
@@ -105,13 +106,7 @@ public class Colectivo {
     
     
    
-    
-    
-    
-    
-    
-    
-    
+    // -------------------------------GETTERS AND SETTERS--------------------------------------
     
     public List<Asiento> getSeats() {
         return seats;

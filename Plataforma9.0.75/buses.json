@@ -4,8 +4,8 @@
         "precio": 200,
         "asientos": [
             {
-                "apellido": "leiba",
-                "nombre": "valentin",
+                "apellido": "",
+                "nombre": "",
                 "seatNumber": 1
             },
             {
@@ -14,33 +14,33 @@
                 "seatNumber": 2
             },
             {
-                "apellido": "leiba",
-                "nombre": "valentin",
+                "apellido": "",
+                "nombre": "",
                 "seatNumber": 3
             },
             {
-                "apellido": "",
-                "nombre": "",
+                "apellido": "valentin",
+                "nombre": "rubare",
                 "seatNumber": 4
             },
             {
-                "apellido": "",
-                "nombre": "",
+                "apellido": "valentin",
+                "nombre": "leiba",
                 "seatNumber": 5
             },
             {
-                "apellido": "leiba",
-                "nombre": "valentin",
+                "apellido": "",
+                "nombre": "",
                 "seatNumber": 6
             },
             {
-                "apellido": "leiba",
-                "nombre": "valentin",
+                "apellido": "",
+                "nombre": "",
                 "seatNumber": 7
             },
             {
-                "apellido": "leiba",
-                "nombre": "valentin",
+                "apellido": "valentin",
+                "nombre": "leiba",
                 "seatNumber": 8
             }
         ],

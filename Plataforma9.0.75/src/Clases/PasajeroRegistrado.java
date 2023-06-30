@@ -1,5 +1,7 @@
-class PasajeroRegistrado extends Pasajero {
+package Clases;
+public class PasajeroRegistrado extends Pasajero {
     private String claveAcceso;
+
 
     
     public String getClaveAcceso() {
@@ -10,8 +12,8 @@ class PasajeroRegistrado extends Pasajero {
     }
 
 
-    public PasajeroRegistrado(String apellido, String nombre, String dni, String claveAcceso) {
-        super(apellido, nombre, dni);
+    public PasajeroRegistrado(String apellido, String nombre, String dni, String claveAcceso, int nroTarjeta) {
+        super(apellido, nombre, dni, nroTarjeta);
         this.claveAcceso = claveAcceso;
     }
 

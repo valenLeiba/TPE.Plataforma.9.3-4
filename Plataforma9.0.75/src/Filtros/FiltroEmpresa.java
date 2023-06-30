@@ -1,3 +1,6 @@
+package Filtros;
+import Clases.Colectivo;
+
 public class FiltroEmpresa implements Filtro {
     private String nombre;
 

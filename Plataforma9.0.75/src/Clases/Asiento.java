@@ -1,3 +1,5 @@
+package Clases;
+
 public class Asiento {
 
         private int numero;

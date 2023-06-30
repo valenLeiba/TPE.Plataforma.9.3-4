@@ -1,20 +1,24 @@
-
+package Clases;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
-class EmpresaTransporte {
+import java.util.Scanner;
+import Filtros.Filtro;
+
+public class EmpresaTransporte {
     private String nombre;
-    private List<Colectivo> colectivos;
-
-
+	private List<Colectivo> colectivos;
+	
+	
 
    public EmpresaTransporte() {
 	   
@@ -45,13 +49,13 @@ class EmpresaTransporte {
                   int seatNumber = asientoObject.getInt("seatNumber");
 
                   Asiento A = new Asiento(seatNumber);
-                  PasajeroRegistrado P = new PasajeroRegistrado(apellido, nombre, "","");
+                  PasajeroRegistrado P = new PasajeroRegistrado(apellido, nombre, "","", 0);
                   
                   A.setOcupante(P);
                   c.addSeat(A);
                 //  System.out.println("  Apellido: " + apellido);
                  // System.out.println("  Nombre: " + nombre);
-                 // System.out.println("  Número de asiento: " + seatNumber);
+                 // System.out.println("  Nï¿½mero de asiento: " + seatNumber);
                  // System.out.println();
               }
               colectivos.add(c);
@@ -59,21 +63,7 @@ class EmpresaTransporte {
           
           return colectivos;
       }
-  
-    	
 
-    private String readFileAsString(String fileName) throws IOException {
-        StringBuilder content = new StringBuilder();
-        
-        try (BufferedReader reader = new BufferedReader(new FileReader(fileName))) {
-            String line;
-            while ((line = reader.readLine()) != null) {
-                content.append(line);
-            }
-        }
-        
-        return content.toString();
-    }
 
     public void SetColectivos(String fileName) throws IOException {
     	
@@ -104,19 +94,19 @@ class EmpresaTransporte {
     	colectivos.add(a);	
     }
     
-    public void listarCompatibles(Filtro f) throws IOException {
+    public void listarCompatibles(Filtro f, List<Colectivo> colectivos) throws IOException {
     	
-    	List<Colectivo> colectivos = this.GetColectivos("buses.json");
+
     
     	for(Colectivo c: colectivos) {
         	if(f.cumple(c)) {
-        		
+        		System.out.println("Empresa '" + c.getEmpresa() + "' [salida: " + c.getHorarioinicio() + ", llegada: " + c.getHorariollegada() + "]");
         		for (Asiento seat : c.getSeats()) {
     			
     				Pasajero aux = seat.getOcupante();
     				if(aux != null) {
     					if(aux.getNombre() == ""){
-    						System.out.println("Asiento " + seat.getNumero());
+    						System.out.println("\tAsiento " + seat.getNumero());
     					}
     				}
     			}
@@ -124,60 +114,60 @@ class EmpresaTransporte {
     	}
     }
     
-    public void ComprarPasaje(Filtro f, int asientonum) throws IOException {
-    	
-    	for(Colectivo c: colectivos) {
-    	
-		
-    		if(f.cumple(c)) {
-    			//el usuario ingresa el asiento que desea
-  
-    			for (Asiento seat : c.getSeats()) {
-   	
-    				if(seat.getNumero() == asientonum){  
-    					if(seat.getOcupante()!= null) {
-    						if(seat.getOcupante().getNombre() == ""){
-    							System.out.println("siiiiiiii "); 
-        
-    							seat.getOcupante().SetNombre("valentin");
-    							seat.getOcupante().SetApellido("leiba");
-	
-    							this.SetColectivos("buses.json");
-				
-    						}else {
-    							System.out.println("ese asiento no esta disponible :( ");
-    						}
-    					}else {
-    						System.out.println("no quedan mas asientos disponibles ");
-    					}
-    				}
-    			}
-    		}
+    public boolean ComprarPasaje(Filtro f, Pasajero p1) throws IOException {
+    		
+    		for(Colectivo c: colectivos) {
+    		
+	    		if(f.cumple(c)) {
+	    			//el usuario ingresa el asiento que desea
+	    			Scanner n = new Scanner(System.in);
+	    			System.out.println("Ingrese el asiento que desea...");
+	    			int asiento = n.nextInt();
+	  
+	    			for (Asiento seat : c.getSeats()) { // CAMBIAR POR UN WHILE (COMPRA == FALSE) 
+	    												// CUANDO SE REALIZA LA COMPRA -> COMPRA = TRUE Y SALE DEL WHILE
+	   	
+	    				if(seat.getNumero() == asiento){
+	    					if(seat.getOcupante()!= null) {
+	    						if(seat.getOcupante().getNombre() == ""){
+	//								if(validarCompra(p1))-------------------------------
+	    								seat.getOcupante().SetNombre(p1.getNombre());
+	    								seat.getOcupante().SetApellido(p1.getApellido());
+	    								n.close();
+	    								return true;
+	   							
+	    						}else {
+	    							System.out.println("ese asiento no esta disponible :( ");
+	    						}
+	    					}else {
+	    						System.out.println("no quedan mas asientos disponibles ");
+	    					}
+	    				}
+	    			}
+	    			
+	    		}
     	}
+    	return false;
+   }
+    
+    public boolean validarCompra(PasajeroRegistrado p1) {
+    		return true;	// Aca iria la funcionalidad que se vincula con el sistema externo de validacion de tarjetas.
     }
     
+    // ---------------------- GETTERS AND SETTERS -------------------------------
+    public String getNombre() {
+    	return nombre;
+    }
     
+    public void setNombre(String nombre) {
+    	this.nombre = nombre;
+    }
     
+    public List<Colectivo> getColectivos() {
+    	return colectivos;
+    }
     
-    
+    public void setColectivos(List<Colectivo> colectivos) {
+    	this.colectivos = colectivos;
+    }
 }
- 
-
-   
-       
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-  
